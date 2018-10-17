@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.control.TextField?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" text="Update" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1">
+  <content>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+         <children>
+            <TextField layoutX="109.0" layoutY="43.0" />
+            <TextField layoutX="393.0" layoutY="43.0" />
+            <Text layoutX="39.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User Name" />
+            <Text layoutX="320.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
+            <ChoiceBox layoutX="224.0" layoutY="128.0" prefWidth="150.0" />
+            <Text layoutX="124.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Field to update" />
+            <Text layoutX="135.0" layoutY="192.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User Name" />
+            <TextField layoutX="225.0" layoutY="174.0" />
+         </children></AnchorPane>
+  </content>
+</TitledPane>
