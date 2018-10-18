@@ -66,7 +66,8 @@ public class sql_create {
 
 
     public void insert(String user_name,String password, String first_name,String secound_name,String city) {
-        String sql = "INSERT INTO Users(user_name,password, first_name, secound_name, city) VALUES(user_name,password, first_name,secound_name,city)";
+       // String sql = "INSERT INTO Users(user_name,password, first_name, secound_name, city) VALUES(user_name,password, first_name,secound_name,city)";
+        String sql = "INSERT INTO Users(user_name,password, first_name, secound_name, city) VALUES(?,?, ?,?,?)";
 
         try{
             Connection conn = this.connect();
@@ -86,8 +87,12 @@ public class sql_create {
      * select all rows in the warehouses table
      */
     public void selectAll(){
-        String sql = "SELECT user_name,password, first_name, secound_name, city FROM Users" +
-                "WHERE user_name=gal";
+        String sql = "SELECT user_name,password, first_name, secound_name, city "+"" +
+                "FROM Users WHERE user_name =yehudaPash";
+
+
+        // String sql = "SELECT id, name, capacity "
+        //                          + "FROM warehouses WHERE capacity > ?";
 
         try (Connection conn = this.connect();
              Statement stmt  = conn.createStatement();
@@ -95,10 +100,65 @@ public class sql_create {
 
             // loop through the result set
             while (rs.next()) {
-                System.out.println(rs.getInt("id") +  "\t" +
-                        rs.getString("name") + "\t" +
-                        rs.getDouble("capacity"));
+                System.out.println(rs.getInt("user_name") +  "\t" +
+                        rs.getString("password") + "\t" +
+                        rs.getDouble("first_name")+  "\t" +
+                        rs.getString("secound_name")+  "\t" +
+                        rs.getString("city"));
             }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void delete(String field) {
+        String sql = "DELETE FROM Users WHERE user_name = ?";
+
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            // set the corresponding param
+            pstmt.setString(1, field);
+            // execute the delete statement
+            pstmt.executeUpdate();
+
+
+        }
+
+            catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void update( int updateNumData,String previousData, String updateData) {
+        //String sql = "UPDATE users WHERE user_name = ronEl";
+        String sql = "UPDATE users WHERE user_name = ronEl";
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            // set the corresponding param
+            pstmt.setString(1, updateData);
+            // update
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    //update_secound_try(int id, String name, double capacity)
+    public void update_secound_try() {
+        String sql = "UPDATE Users SET password = ? ,"
+        +"WHERE user_name = ? ";
+
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            // set the corresponding param
+           // pstmt.setString(1, "ronEl");
+            pstmt.setString(2, "newpass");
+            //pstmt.setString(3, id);
+            // update
+            pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -111,14 +171,19 @@ public class sql_create {
 
     public static void main(String[] args) {
         //createNewDatabase("SSSIT.db");
-       createNewTable("Users");
+       // createNewTable("Users");
        // createNewTable("Flight");
+        //sql_create app = new sql_create();
+        //app.selectAll();
         sql_create app = new sql_create();
-        app.selectAll();
-
         // insert three new rows
-        //app.insert("galLah", "bgu4u","gal", "lahiani","beer-sheva");
-        int i=1;
-
+      //  app.insert("ronEl", "bgu3u","ron", "elharar","ashdod");
+      //  app.insert("galLah", "bgu4u","gal", "lahiani","beer-sheva");
+      //  app.insert("liorPiz", "bgu5u","lior", "pizman","gan-yavne");
+      //  app.insert("yehudaPash", "bgu2u","yehuda", "pashay","ashdod");
+       // app.selectAll();
+        //app.delete("ronEl");
+        //app.update(3, "ronEl","ronAFterChange");
+        app.update_secound_try();
     }
 }
