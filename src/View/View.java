@@ -59,7 +59,7 @@ public class View {
         try
         {
             Parent root = FXMLLoader.load(getClass().getResource("UpdateUser.fxml"));
-            Scene scene = new Scene(root, 600, 600);
+            Scene scene = new Scene(root, 700, 600);
             stage.setScene(scene);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
