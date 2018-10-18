@@ -38,7 +38,7 @@ public class sql_create {
                 + " name text PRIMARY KEY,\n"
                 + " password text  NOT NULL,\n"
                 + "first_name text NOT NULL,\n "
-                + "secound_name text NOT NULL,\n "
+                + "last_name text NOT NULL,\n "
                 + "city text NOT NULL,\n "
                 + ");";
 
@@ -65,9 +65,9 @@ public class sql_create {
     }
 
 
-    public void insert(String user_name,String password, String first_name,String secound_name,String city) {
-       // String sql = "INSERT INTO Users(user_name,password, first_name, secound_name, city) VALUES(user_name,password, first_name,secound_name,city)";
-        String sql = "INSERT INTO Users(user_name,password, first_name, secound_name, city) VALUES(?,?, ?,?,?)";
+    public void insert(String user_name,String password, String first_name,String last_name,String city,String date) {
+       // String sql = "INSERT INTO Users(user_name,password, first_name, last_name, city) VALUES(user_name,password, first_name,last_name,city)";
+        String sql = "INSERT INTO Users(user_name,password, first_name, last_name, city,date) VALUES(?,?, ?,?,?,?)";
 
         try{
             Connection conn = this.connect();
@@ -75,8 +75,9 @@ public class sql_create {
             pstmt.setString(1, user_name);
             pstmt.setString(2, password);
             pstmt.setString(3, first_name);
-            pstmt.setString(4, secound_name);
+            pstmt.setString(4, last_name);
             pstmt.setString(5, city);
+            pstmt.setString(6, date);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -87,44 +88,39 @@ public class sql_create {
      * select all rows in the warehouses table
      */
     public void selectAll(){
-        String sql = "SELECT user_name,password, first_name, secound_name, city "+"" +
+        String sql = "SELECT user_name,password, first_name, last_name, city "+"" +
                 "FROM Users WHERE user_name =yehudaPash";
 
 
         // String sql = "SELECT id, name, capacity "
         //                          + "FROM warehouses WHERE capacity > ?";
-
         try (Connection conn = this.connect();
              Statement stmt  = conn.createStatement();
              ResultSet rs    = stmt.executeQuery(sql)){
-
             // loop through the result set
             while (rs.next()) {
                 System.out.println(rs.getInt("user_name") +  "\t" +
                         rs.getString("password") + "\t" +
                         rs.getDouble("first_name")+  "\t" +
-                        rs.getString("secound_name")+  "\t" +
-                        rs.getString("city"));
+                        rs.getString("last_name")+  "\t" +
+                        rs.getString("city")+  "\t" +
+                        rs.getString("date"));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    public void delete(String field) {
+    public void delete(String userToDelete) {
         String sql = "DELETE FROM Users WHERE user_name = ?";
 
         try (Connection conn = this.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
             // set the corresponding param
-            pstmt.setString(1, field);
+            pstmt.setString(1, userToDelete);
             // execute the delete statement
             pstmt.executeUpdate();
-
-
         }
-
             catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -145,8 +141,8 @@ public class sql_create {
         }
     }
 
-    //update_secound_try(int id, String name, double capacity)
-    public void update_secound_try() {
+    //update_second_try(int id, String name, double capacity)
+    public void update_second_try() {
         String sql = "UPDATE Users SET password = ? ,"
         +"WHERE user_name = ? ";
 
@@ -162,6 +158,74 @@ public class sql_create {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+    }
+    public void find_specific_record(String userName) {
+        String sql = "SELECT user_name, password, first_name, last_name, city,date "
+                + "FROM Users WHERE user_name = ?";
+
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            // set the value
+            pstmt.setString(1, userName);
+            //
+            ResultSet rs = pstmt.executeQuery();
+
+            // loop through the result set
+            while (rs.next()) {
+                System.out.println(rs.getString("user_name") + "\t" +
+                        rs.getString("password") + "\t" +
+                        rs.getString("first_name") + "\t" +
+                        rs.getString("last_name") + "\t" +
+                        rs.getString("city")+ "\t" +
+                        rs.getString("date")
+                );
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+
+    public User find_User_Exists(String userName) {
+        String sql = "SELECT user_name, password, first_name, last_name, city,date "
+                + "FROM Users WHERE user_name = ?";
+
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            // set the value
+            pstmt.setString(1, userName);
+            //
+            ResultSet rs = pstmt.executeQuery();
+
+            // loop through the result set
+
+
+            while (rs.next()) {
+                /**
+                 *
+                 System.out.println(rs.getString("user_name") + "\t" +
+                        rs.getString("password") + "\t" +
+                        rs.getString("first_name") + "\t" +
+                        rs.getString("secound_name") + "\t" +
+                        rs.getString("city")+ "\t" +
+                        rs.getString("date")
+                );
+             */
+                return new User(rs.getString("user_name"),
+                        rs.getString("password"),
+                        rs.getString("first_name"),
+                        rs.getString("last_name"),
+                        rs.getString("city"),
+                        rs.getString("date")
+                );
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+        return null;
     }
 
 
@@ -184,6 +248,6 @@ public class sql_create {
        // app.selectAll();
         //app.delete("ronEl");
         //app.update(3, "ronEl","ronAFterChange");
-        app.update_secound_try();
+        //app.update_second_try();
     }
 }
