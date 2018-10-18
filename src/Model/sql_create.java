@@ -91,7 +91,6 @@ public class sql_create {
         String sql = "SELECT user_name,password, first_name, last_name, city "+"" +
                 "FROM Users WHERE user_name =yehudaPash";
 
-
         // String sql = "SELECT id, name, capacity "
         //                          + "FROM warehouses WHERE capacity > ?";
         try (Connection conn = this.connect();

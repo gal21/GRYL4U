@@ -1,6 +1,10 @@
 package View;
+import Model.User;
+import javafx.scene.control.Alert;
 
-public class CreateUserController {
+import java.time.LocalDate;
+
+public class CreateUserController extends  UserController{
     public javafx.scene.control.TextField userName;
     public javafx.scene.control.TextField userPassword;
     public javafx.scene.control.TextField userFirstName;
@@ -9,12 +13,23 @@ public class CreateUserController {
     public javafx.scene.control.DatePicker userBirthDate;
     public javafx.scene.control.Button apply;
 
-    private void apply(){
+    public User apply(){
+        String _userName = userName.getText();
         String _password = userPassword.getText();
         String _firstName = userFirstName.getText();
         String _lastName = userLastName.getText();
         String _userCity = userCity.getText();
-        String _userBorthDate = userBirthDate.getDayCellFactory().toString();
+        LocalDate date = userBirthDate.getValue();
+        User newUser = new User(_userName,_password,_firstName,_lastName,_userCity,date.toString());
+        //controller.insertUser(newUser);
+        newUser.printUser();
+        return newUser;
+    }
+
+    public void invalidUserDataError(String errorMsg){
+        Alert a = new Alert(Alert.AlertType.INFORMATION);
+        a.setContentText(errorMsg);
+        a.show();
     }
 
 }
