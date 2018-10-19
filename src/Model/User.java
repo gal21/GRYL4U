@@ -10,12 +10,12 @@ public class User {
 
     public User(String user_name, String password, String first_name,
                 String last_name, String city, String date){
-        this.user_name = user_name;
-        this.password = password;
-        this.first_name = first_name;
-        this.last_name = last_name;
-        this.city = city;
-        this.date = date;
+        this.user_name=user_name;
+        this.password=password;
+        this.first_name=first_name;
+        this.last_name=last_name;
+        this.city=city;
+        this.date=date;
     }
 
     public String getUser_name() {
@@ -64,5 +64,9 @@ public class User {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public void printUser(){
+        System.out.println(user_name+", "+ password +", " + first_name+ ", "+ last_name+ ", "+city+", " + date);
     }
 }
