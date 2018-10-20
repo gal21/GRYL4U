@@ -1,5 +1,6 @@
 package View;
 
+import Model.User;
 import javafx.scene.control.Alert;
 
 import java.time.LocalDate;
@@ -36,10 +37,10 @@ public class UserController {
     }
 
     // Search the user name string and if exist in the database display the user data
-    public String searchUserData(String name)
+    public User searchUserData(String name)
     {
         // User userDetails = controller.searchUserData(name);
-        return null;
+        return new User("ronElhar","21","sds","sdsd","city","2012-01-12");
     }
 
     // clear all fields from user data, to start new search

@@ -18,11 +18,18 @@ public class UpdateUserController extends UserController {
     public static User currentUser ;
 
     public void show(){
-        userPassword.setText("123");
+        currentUser = searchUserData(userName.getText());
+        userName.setDisable(true);
+        userPassword.setText(currentUser.getPassword());
+        userPassword.setDisable(false);
         userFirstName.setText(currentUser.getFirst_name());
+        userFirstName.setDisable(false);
         userLastName.setText(currentUser.getLast_name());
+        userLastName.setDisable(false);
         userCity.setText(currentUser.getCity());
+        userCity.setDisable(false);
         userBirthDate.setValue(LocalDate.parse(currentUser.getDate()));
+        userBirthDate.setDisable(false);
     }
 
     public void updateUserData() {
@@ -31,7 +38,7 @@ public class UpdateUserController extends UserController {
         String lastName = userLastName.getText();
         String city = userCity.getText();
         String birthDate = userBirthDate.getValue().toString();
-        User updatedUser = new User(userName.getText(), password, firstName, lastName,city , birthDate);
+        User updatedUser = new User(currentUser.getUser_name(), password, firstName, lastName,city , birthDate);
         updatedUser.printUser();
         //controller.updateUser(updatedUser);
     }
