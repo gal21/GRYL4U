@@ -7,7 +7,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
 import java.awt.*;
 import java.time.LocalDate;
 
