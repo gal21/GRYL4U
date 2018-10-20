@@ -29,14 +29,15 @@ public class sql_create {
         String url = "jdbc:sqlite:C:\\Users\\Lior\\Desktop\\current semester\\Information resources management\\Exercises\\ex1\\Vacation4U\\SSSIT.db";
 
         // SQL statement for creating a new table
-        String sql = "CREATE TABLE IF NOT EXISTS Users (\n"
-                + " name text PRIMARY KEY,\n"
-                + " password text  NOT NULL,\n"
-                + "first_name text NOT NULL,\n "
-                + "last_name text NOT NULL,\n "
-                + "city text NOT NULL,\n "
+        String sql = "CREATE TABLE IF NOT EXISTS "+ tableName +" (\n"
+                + " user_name varchar(50) PRIMARY KEY,\n"
+                + " password varchar(50),\n"
+                + " first_name varchar(50),\n "
+                + " last_name varchar(50),\n "
+                + " city varchar(50),\n "
+                + " date varchar(50)\n "
                 + ");";
-        try{
+        try {
             Connection conn = DriverManager.getConnection(url);
             Statement stmt = conn.createStatement();
             stmt.execute(sql);
@@ -44,6 +45,7 @@ public class sql_create {
             System.out.println(e.getMessage());
         }
     }
+
 
     private Connection connect() {
         // SQLite connection string
@@ -58,10 +60,10 @@ public class sql_create {
     }
 
 
-    public void insert(String user_name,String password, String first_name,String last_name,String city,String date) {
+    public void insert(String user_name, String password, String first_name, String last_name, String city, String date) {
         String sql = "INSERT INTO Users(user_name,password, first_name, last_name, city,date) VALUES(?,?, ?,?,?,?)";
 
-        try{
+        try {
             Connection conn = this.connect();
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, user_name);
@@ -85,14 +87,13 @@ public class sql_create {
             pstmt.setString(1, userToDelete);
             // execute the delete statement
             pstmt.executeUpdate();
-        }
-            catch (SQLException e) {
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    public void update(String user_name, String field, String newData){
-        String sql = "UPDATE Users SET "+ field +" = ? WHERE user_name = ? ";
+    public void update(String user_name, String field, String newData) {
+        String sql = "UPDATE Users SET " + field + " = ? WHERE user_name = ? ";
 
         try (Connection conn = this.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -125,7 +126,7 @@ public class sql_create {
                         rs.getString("password") + "\t" +
                         rs.getString("first_name") + "\t" +
                         rs.getString("last_name") + "\t" +
-                        rs.getString("city")+ "\t" +
+                        rs.getString("city") + "\t" +
                         rs.getString("date")
                 );
             }
@@ -164,6 +165,10 @@ public class sql_create {
         return null;
     }
 
+    private boolean confirmPassword(String userName, String password) {
+        User currUser = find_User_Exists(userName);
+        return (password.equals(currUser.getPassword())) ? true : false;
+    }
 
     /**
      * @param args the command line arguments
@@ -171,7 +176,7 @@ public class sql_create {
 
     public static void main(String[] args) {
         //createNewDatabase("SSSIT.db");
-        //createNewTable("Users");
+        createNewTable("Try2");
         //createNewTable("Flight");
         //sql_create app = new sql_create();
         //app.selectAll();
@@ -186,5 +191,6 @@ public class sql_create {
         //app.update("moshiko","first_name","yoniB");//,"bo");
         //app.update_second_try();
         //app.find_specific_record("moshiko");
+        //System.out.println(app.confirmPassword("liorPiz", "bgu5u"));
     }
 }
