@@ -8,6 +8,11 @@ public class DeleteUserController extends UserController {
     public javafx.scene.control.Button delete;
     public javafx.scene.control.Button clear;
 
+    public boolean userAuthentication()
+    {
+        return true;
+        //return userAuthentication(userName.getText(), userPassword.getText()); // of controller
+    }
 
     public void deleteUser() {
         if (searchUserData(userName.getText()) != null)
