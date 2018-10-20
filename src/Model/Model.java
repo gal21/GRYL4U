@@ -25,7 +25,14 @@ public class Model {
         return dbManagement.find_User_Exists(userName);
     }
 
-    public void deleteUser(String userToDelete) {
-        dbManagement.delete(userToDelete);
+    public boolean deleteUser(String userToDelete, String password) {
+        if(dbManagement.confirmPassword(userToDelete,password)){
+            dbManagement.delete(userToDelete);
+            return true;
+        }
+        else{
+            return false;
+        }
+
     }
 }

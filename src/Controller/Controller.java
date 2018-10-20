@@ -28,7 +28,7 @@ public class Controller {
         model.insertUser(newUser);
     }
 
-    public void deleteUser(String userToDelete) {
-        model.deleteUser(userToDelete);
+    public boolean deleteUser(String userToDelete, String password) {
+        return model.deleteUser(userToDelete, password);
     }
 }
