@@ -16,5 +16,7 @@ public class UpdateUserController extends UserController {
 
         User updatedUser = new User(userName, password, firstName, lastName, userCity, userBirthDate);
 
+        // updateUserDataController(updatedUser);
+
     }
 }
