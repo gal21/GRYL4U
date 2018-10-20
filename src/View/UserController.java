@@ -1,5 +1,6 @@
 package View;
 
+import Controller.Controller;
 import Model.User;
 import javafx.scene.control.Alert;
 
@@ -14,6 +15,7 @@ public class UserController {
     public javafx.scene.control.DatePicker userBirthDate;
     public javafx.scene.control.Button show;
     public javafx.scene.control.Button clear;
+
     // Validation checks for the typed user name
     public void invalidUserName() {
         String name = null;
