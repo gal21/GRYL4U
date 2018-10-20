@@ -1,5 +1,6 @@
 package View;
 
+import Controller.Controller;
 import Model.User;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,9 +13,15 @@ public class View {
     public javafx.scene.control.Button readUser;
     public javafx.scene.control.Button updateUser;
     public javafx.scene.control.Button deleteUser;
-    public UpdateUserController UUC = new UpdateUserController();
-    public ReadUserController RUC = new ReadUserController();
-    public CreateUserController CUC = new CreateUserController();
+    public UserController userController;
+    public Controller controller;
+
+    public void setController(Controller _controller) {
+        controller = _controller;
+        userController = new UserController();
+        userController.setController(controller);
+    }
+
     public void createUser()
     {
         Stage stage = new Stage();

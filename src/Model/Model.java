@@ -25,4 +25,6 @@ public class Model {
         return sql_db.find_User_Exists(userName);
     }
 
+    public void deleteUser() {
+    }
 }
