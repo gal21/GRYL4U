@@ -80,7 +80,6 @@ public class DBManagement {
 
     public void delete(String userToDelete) {
         String sql = "DELETE FROM Users WHERE user_name = ?";
-
         try (Connection conn = this.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             // set the corresponding param
@@ -165,7 +164,7 @@ public class DBManagement {
         return null;
     }
 
-    private boolean confirmPassword(String userName, String password) {
+    public boolean confirmPassword(String userName, String password) {
         User currUser = find_User_Exists(userName);
         return (password.equals(currUser.getPassword())) ? true : false;
     }

@@ -60,7 +60,7 @@ public class UserController {
     public User searchUserData(String name)
     {
         // User userDetails = controller.searchUserData(name);
-        return new User("ronElhar","21","sds","sdsd","city","2012-01-12");
+        return controller.searchUserData(name) ;
     }
 
     // clear all fields from user data, to start new search
