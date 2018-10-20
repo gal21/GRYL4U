@@ -11,11 +11,7 @@ import java.sql.Statement;
 public class sql_create {
 
     public static void createNewDatabase(String fileName) {
-
-        String url = "jdbc:sqlite:C:/sqlite/" + fileName;
-
-       // String url = " C:\\Users\\Yehuda Pashay\\Desktop\\שנה ג'\\project\\databases" + fileName;
-
+        String url = "jdbc:sqlite:C:\\Program Files\\sqlite" + fileName;
         try {
             Connection conn = DriverManager.getConnection(url);
             if (conn != null) {
@@ -23,7 +19,6 @@ public class sql_create {
                 System.out.println("The driver name is " + meta.getDriverName());
                 System.out.println("A new database has been created.");
             }
-
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -31,7 +26,7 @@ public class sql_create {
 
     public static void createNewTable(String tableName) {
         // SQLite connection string
-        String url = "jdbc:sqlite:C://sqlite/SSSIT.db";
+        String url = "jdbc:sqlite:C:\\Users\\Lior\\Desktop\\current semester\\Information resources management\\Exercises\\ex1\\Vacation4U\\SSSIT.db";
 
         // SQL statement for creating a new table
         String sql = "CREATE TABLE IF NOT EXISTS Users (\n"
@@ -41,8 +36,6 @@ public class sql_create {
                 + "last_name text NOT NULL,\n "
                 + "city text NOT NULL,\n "
                 + ");";
-
-
         try{
             Connection conn = DriverManager.getConnection(url);
             Statement stmt = conn.createStatement();
@@ -54,7 +47,7 @@ public class sql_create {
 
     private Connection connect() {
         // SQLite connection string
-        String url = "jdbc:sqlite:C://sqlite/SSSIT.db";
+        String url = "jdbc:sqlite:C:\\Users\\Lior\\Desktop\\current semester\\Information resources management\\Exercises\\ex1\\Vacation4U\\SSSIT.db";
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(url);
@@ -66,7 +59,6 @@ public class sql_create {
 
 
     public void insert(String user_name,String password, String first_name,String last_name,String city,String date) {
-       // String sql = "INSERT INTO Users(user_name,password, first_name, last_name, city) VALUES(user_name,password, first_name,last_name,city)";
         String sql = "INSERT INTO Users(user_name,password, first_name, last_name, city,date) VALUES(?,?, ?,?,?,?)";
 
         try{
@@ -79,33 +71,6 @@ public class sql_create {
             pstmt.setString(5, city);
             pstmt.setString(6, date);
             pstmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    /**
-     * select all rows in the warehouses table
-     */
-    public void selectAll(){
-        String sql = "SELECT user_name,password, first_name, last_name, city "+"" +
-                "FROM Users WHERE user_name =yehudaPash";
-
-
-        // String sql = "SELECT id, name, capacity "
-        //                          + "FROM warehouses WHERE capacity > ?";
-        try (Connection conn = this.connect();
-             Statement stmt  = conn.createStatement();
-             ResultSet rs    = stmt.executeQuery(sql)){
-            // loop through the result set
-            while (rs.next()) {
-                System.out.println(rs.getInt("user_name") +  "\t" +
-                        rs.getString("password") + "\t" +
-                        rs.getDouble("first_name")+  "\t" +
-                        rs.getString("last_name")+  "\t" +
-                        rs.getString("city")+  "\t" +
-                        rs.getString("date"));
-            }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -126,14 +91,15 @@ public class sql_create {
         }
     }
 
-    public void update( int updateNumData,String previousData, String updateData) {
-        //String sql = "UPDATE users WHERE user_name = ronEl";
-        String sql = "UPDATE users WHERE user_name = ronEl";
+    public void update(String user_name, String field, String newData){
+        String sql = "UPDATE Users SET "+ field +" = ? WHERE user_name = ? ";
+
         try (Connection conn = this.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            // set the corresponding param
-            pstmt.setString(1, updateData);
+            // set the corresponding param [ instead of question marks (?) ]
+            pstmt.setString(2, user_name);
+            pstmt.setString(1, newData);
             // update
             pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -141,24 +107,6 @@ public class sql_create {
         }
     }
 
-    //update_second_try(int id, String name, double capacity)
-    public void update_second_try() {
-        String sql = "UPDATE Users SET password = ? ,"
-        +"WHERE user_name = ? ";
-
-        try (Connection conn = this.connect();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-            // set the corresponding param
-           // pstmt.setString(1, "ronEl");
-            pstmt.setString(2, "newpass");
-            //pstmt.setString(3, id);
-            // update
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
     public void find_specific_record(String userName) {
         String sql = "SELECT user_name, password, first_name, last_name, city,date "
                 + "FROM Users WHERE user_name = ?";
@@ -198,21 +146,9 @@ public class sql_create {
             pstmt.setString(1, userName);
             //
             ResultSet rs = pstmt.executeQuery();
-
             // loop through the result set
 
-
             while (rs.next()) {
-                /**
-                 *
-                 System.out.println(rs.getString("user_name") + "\t" +
-                        rs.getString("password") + "\t" +
-                        rs.getString("first_name") + "\t" +
-                        rs.getString("secound_name") + "\t" +
-                        rs.getString("city")+ "\t" +
-                        rs.getString("date")
-                );
-             */
                 return new User(rs.getString("user_name"),
                         rs.getString("password"),
                         rs.getString("first_name"),
@@ -235,19 +171,20 @@ public class sql_create {
 
     public static void main(String[] args) {
         //createNewDatabase("SSSIT.db");
-       // createNewTable("Users");
-       // createNewTable("Flight");
+        //createNewTable("Users");
+        //createNewTable("Flight");
         //sql_create app = new sql_create();
         //app.selectAll();
         sql_create app = new sql_create();
-        // insert three new rows
-      //  app.insert("ronEl", "bgu3u","ron", "elharar","ashdod");
-      //  app.insert("galLah", "bgu4u","gal", "lahiani","beer-sheva");
-      //  app.insert("liorPiz", "bgu5u","lior", "pizman","gan-yavne");
-      //  app.insert("yehudaPash", "bgu2u","yehuda", "pashay","ashdod");
-       // app.selectAll();
+        //insert three new rows
+        //app.insert("moshiko", "bgu7u","mor", "dani","tel-aviv","01/01/2004");
+        //app.insert("galLah", "bgu4u","gal", "lahiani","beer-sheva");
+        //app.insert("liorPiz", "bgu5u","lior", "pizman","gan-yavne");
+        //app.insert("yehudaPash", "bgu2u","yehuda", "pashay","ashdod");
+        //app.selectAll();
         //app.delete("ronEl");
-        //app.update(3, "ronEl","ronAFterChange");
+        //app.update("moshiko","first_name","yoniB");//,"bo");
         //app.update_second_try();
+        //app.find_specific_record("moshiko");
     }
 }

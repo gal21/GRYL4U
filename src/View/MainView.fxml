@@ -4,24 +4,24 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:controller="View.View" fx:id="AnchorPane1" minHeight="0.0" minWidth="0.0" prefHeight="344.0" prefWidth="599.0" style="-fx-background-color: #E6E6FA;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="AnchorPane1" minHeight="0.0" minWidth="0.0" prefHeight="344.0" prefWidth="599.0" style="-fx-background-color: #E6E6FA;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.View">
    <children>
-      <Button fx:id="createUser" onAction="#createUser" layoutX="112.0" layoutY="64.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="171.0" style="-fx-background-color: #696969;" text="Create User">
+      <Button fx:id="createUser" layoutX="55.0" layoutY="54.0" mnemonicParsing="false" onAction="#createUser" prefHeight="125.0" prefWidth="228.0" style="-fx-background-color: #696969;" text="Create User">
          <font>
             <Font size="22.0" />
          </font>
       </Button>
-      <Button fx:id="readUser" onAction="#readUser" layoutX="310.0" layoutY="64.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="171.0" style="-fx-background-color: #696969;" text="Read User Data">
+      <Button fx:id="readUser" layoutX="310.0" layoutY="54.0" mnemonicParsing="false" onAction="#readUser" prefHeight="125.0" prefWidth="228.0" style="-fx-background-color: #696969;" text="Read User Data">
          <font>
             <Font size="22.0" />
          </font>
       </Button>
-      <Button fx:id="updateUser" onAction="#updateUser" layoutX="310.0" layoutY="186.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="171.0" style="-fx-background-color: #696969;" text="Update User Data">
+      <Button fx:id="updateUser" layoutX="310.0" layoutY="186.0" mnemonicParsing="false" onAction="#updateUser" prefHeight="125.0" prefWidth="228.0" style="-fx-background-color: #696969;" text="Update User Data">
          <font>
             <Font size="22.0" />
          </font>
       </Button>
-      <Button fx:id="deleteUser" onAction="#deleteUser" layoutX="112.0" layoutY="186.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="171.0" style="-fx-background-color: #696969;" text="Delete User">
+      <Button fx:id="deleteUser" layoutX="55.0" layoutY="186.0" mnemonicParsing="false" onAction="#deleteUser" prefHeight="125.0" prefWidth="228.0" style="-fx-background-color: #696969;" text="Delete User">
          <font>
             <Font size="22.0" />
          </font>

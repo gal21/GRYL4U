@@ -1,5 +1,6 @@
 package View;
 
+import Model.User;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -11,7 +12,9 @@ public class View {
     public javafx.scene.control.Button readUser;
     public javafx.scene.control.Button updateUser;
     public javafx.scene.control.Button deleteUser;
-
+    public UpdateUserController UUC = new UpdateUserController();
+    public ReadUserController RUC = new ReadUserController();
+    public CreateUserController CUC = new CreateUserController();
     public void createUser()
     {
         Stage stage = new Stage();
@@ -59,7 +62,7 @@ public class View {
         try
         {
             Parent root = FXMLLoader.load(getClass().getResource("UpdateUser.fxml"));
-            Scene scene = new Scene(root, 700, 600);
+            Scene scene = new Scene(root, 600, 700);
             stage.setScene(scene);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();

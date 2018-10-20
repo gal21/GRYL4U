@@ -24,7 +24,7 @@ public class UserController {
         }
         catch (Exception e)
         {
-            if (name == null)
+            if (name == null || searchUserData(name) == null)
             {
                 Alert a = new Alert(Alert.AlertType.INFORMATION);
                 a.setContentText("You didn't entered user name");
@@ -36,10 +36,10 @@ public class UserController {
     }
 
     // Search the user name string and if exist in the database display the user data
-    public void searchUserData(String name)
+    public String searchUserData(String name)
     {
         // User userDetails = controller.searchUserData(name);
-        return;
+        return null;
     }
 
     // clear all fields from user data, to start new search
