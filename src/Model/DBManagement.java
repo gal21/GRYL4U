@@ -11,7 +11,7 @@ import java.sql.Statement;
 public class DBManagement {
 
     public static void createNewDatabase(String fileName) {
-        String url = "jdbc:sqlite:C:\\Program Files\\sqlite" + fileName;
+        String url = "jdbc:sqlite:C:\\sqlite" + fileName;
         try {
             Connection conn = DriverManager.getConnection(url);
             if (conn != null) {
