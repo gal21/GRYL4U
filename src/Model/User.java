@@ -30,7 +30,7 @@ public class User {
         return first_name;
     }
 
-    public String getSecound_name() {
+    public String getLast_name() {
         return last_name;
     }
 
@@ -54,7 +54,7 @@ public class User {
         this.first_name = first_name;
     }
 
-    public void setSecound_name(String secound_name) {
+    public void setLast_name(String secound_name) {
         this.last_name = last_name;
     }
 
