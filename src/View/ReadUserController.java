@@ -1,5 +1,5 @@
 package View;
 
-public class ReadUserController extends ShowUserController {
+public class ReadUserController extends UserController {
 
 }

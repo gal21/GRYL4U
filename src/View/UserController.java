@@ -1,5 +1,6 @@
 package View;
 
+import Controller.Controller;
 import Model.User;
 import javafx.scene.control.Alert;
 
@@ -14,7 +15,29 @@ public class UserController {
     public javafx.scene.control.DatePicker userBirthDate;
     public javafx.scene.control.Button show;
     public javafx.scene.control.Button clear;
+    protected static Controller controller;
+
+    public static User currentUser ;
+    public void setController(Controller _controller){
+        controller = _controller;
+    }
+    public void show(){
+        currentUser = searchUserData(userName.getText());
+        userName.setDisable(true);
+        userPassword.setText(currentUser.getPassword());
+        userPassword.setDisable(false);
+        userFirstName.setText(currentUser.getFirst_name());
+        userFirstName.setDisable(false);
+        userLastName.setText(currentUser.getLast_name());
+        userLastName.setDisable(false);
+        userCity.setText(currentUser.getCity());
+        userCity.setDisable(false);
+        userBirthDate.setValue(LocalDate.parse(currentUser.getDate()));
+        userBirthDate.setDisable(false);
+    }
+
     // Validation checks for the typed user name
+
     public void invalidUserName() {
         String name = null;
         try {
