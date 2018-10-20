@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class sql_create {
+public class DBManagement {
 
     public static void createNewDatabase(String fileName) {
         String url = "jdbc:sqlite:C:\\Program Files\\sqlite" + fileName;
@@ -178,9 +178,9 @@ public class sql_create {
         //createNewDatabase("SSSIT.db");
         createNewTable("Try2");
         //createNewTable("Flight");
-        //sql_create app = new sql_create();
+        //DBManagement app = new DBManagement();
         //app.selectAll();
-        sql_create app = new sql_create();
+        DBManagement app = new DBManagement();
         //insert three new rows
         //app.insert("moshiko", "bgu7u","mor", "dani","tel-aviv","01/01/2004");
         //app.insert("galLah", "bgu4u","gal", "lahiani","beer-sheva");
