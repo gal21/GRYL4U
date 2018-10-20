@@ -21,7 +21,7 @@ public class CreateUserController extends  UserController{
         String _userCity = userCity.getText();
         LocalDate date = userBirthDate.getValue();
         User newUser = new User(_userName,_password,_firstName,_lastName,_userCity,date.toString());
-        //controller.insertUser(newUser);
+        controller.insertUser(newUser);
         newUser.printUser();
         return newUser;
     }

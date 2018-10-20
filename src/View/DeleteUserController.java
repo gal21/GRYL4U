@@ -17,7 +17,7 @@ public class DeleteUserController extends UserController {
     public void deleteUser() {
         if (searchUserData(userName.getText()) != null)
         {
-            deleteUser(); // of controller
+            controller.deleteUser(userName.getText()); // of controller
             Alert a = new Alert(Alert.AlertType.INFORMATION);
             a.setContentText("The user is deleted.");
             a.show();
