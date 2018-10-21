@@ -41,20 +41,14 @@ public class UserController {
 
     // Validation checks for the typed user name
     public boolean invalidUserName() {
-        String name = null;
-        try {
-            name = userName.getText();
-            currentUser = searchUserData(name);
-        }
-        catch (Exception e)
+        String name = userName.getText();
+        currentUser = searchUserData(name);
+        if (name.isEmpty() || currentUser == null)
         {
-            if (name.isEmpty() || currentUser == null)
-            {
-                Alert a = new Alert(Alert.AlertType.INFORMATION);
-                a.setContentText("Invalid User Name, please try again.");
-                a.show();
-                return false;
-            }
+            Alert a = new Alert(Alert.AlertType.INFORMATION);
+            a.setContentText("Invalid User Name, please try again.");
+            a.show();
+            return false;
         }
         return true;
     }
@@ -68,6 +62,7 @@ public class UserController {
 
     // clear all fields from user data, to start new search
     public void clearUserData() {
+        userName.setDisable(false);
         userName.clear();
         userPassword.clear();
         userFirstName.clear();

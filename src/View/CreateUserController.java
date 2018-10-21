@@ -59,19 +59,28 @@ public class CreateUserController extends  UserController{
         }
         else
         {
-            User newUser = new User(_userName,_password,_firstName,_lastName,_userCity,date.toString());
-            controller.insertUser(newUser);
             if (searchUserData(_userName) != null)
             {
                 Alert a = new Alert(Alert.AlertType.INFORMATION);
-                a.setContentText("The user created successfully.");
+                a.setContentText("This user already exist in the system.");
                 a.show();
             }
             else
             {
-                Alert a = new Alert(Alert.AlertType.INFORMATION);
-                a.setContentText("Error occurred! Please try again.");
-                a.show();
+                User newUser = new User(_userName,_password,_firstName,_lastName,_userCity,date.toString());
+                controller.insertUser(newUser);
+                if (searchUserData(_userName) != null)
+                {
+                    Alert a = new Alert(Alert.AlertType.INFORMATION);
+                    a.setContentText("The user created successfully.");
+                    a.show();
+                }
+                else
+                {
+                    Alert a = new Alert(Alert.AlertType.INFORMATION);
+                    a.setContentText("Error occurred! Please try again.");
+                    a.show();
+                }
             }
             clearUserData();
         }
