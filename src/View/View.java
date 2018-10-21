@@ -24,7 +24,6 @@ public class View {
     public void createUser()
     {
         Stage stage = new Stage();
-        stage.setAlwaysOnTop(true);
         stage.setResizable(true);
         stage.setTitle("Create New User");
         try
@@ -43,7 +42,6 @@ public class View {
     public void readUser()
     {
         Stage stage = new Stage();
-        stage.setAlwaysOnTop(true);
         stage.setResizable(true);
         stage.setTitle("Read User");
         try
@@ -62,7 +60,6 @@ public class View {
     public void updateUser()
     {
         Stage stage = new Stage();
-        stage.setAlwaysOnTop(true);
         stage.setResizable(true);
         stage.setTitle("Update User");
         try
@@ -81,7 +78,6 @@ public class View {
     public void deleteUser()
     {
         Stage stage = new Stage();
-        stage.setAlwaysOnTop(true);
         stage.setResizable(true);
         stage.setTitle("Delete User");
         try

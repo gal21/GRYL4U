@@ -13,17 +13,68 @@ public class CreateUserController extends  UserController{
     public javafx.scene.control.DatePicker userBirthDate;
     public javafx.scene.control.Button apply;
 
-    public User apply(){
+    public void apply(){
         String _userName = userName.getText();
         String _password = userPassword.getText();
         String _firstName = userFirstName.getText();
         String _lastName = userLastName.getText();
         String _userCity = userCity.getText();
         LocalDate date = userBirthDate.getValue();
-        User newUser = new User(_userName,_password,_firstName,_lastName,_userCity,date.toString());
-        controller.insertUser(newUser);
-        newUser.printUser();
-        return newUser;
+
+        if (_userName.isEmpty())
+        {
+            Alert a = new Alert(Alert.AlertType.INFORMATION);
+            a.setContentText("You didn't entered your user name, please entered.");
+            a.show();
+        }
+        else if (_password.isEmpty())
+        {
+            Alert a = new Alert(Alert.AlertType.INFORMATION);
+            a.setContentText("You didn't entered your password, please entered.");
+            a.show();
+        }
+        else if (_firstName.isEmpty())
+        {
+            Alert a = new Alert(Alert.AlertType.INFORMATION);
+            a.setContentText("You didn't entered your first name, please entered.");
+            a.show();
+        }
+        else if (_lastName.isEmpty())
+        {
+            Alert a = new Alert(Alert.AlertType.INFORMATION);
+            a.setContentText("You didn't entered your last name, please entered.");
+            a.show();
+        }
+        else if (_userCity.isEmpty())
+        {
+            Alert a = new Alert(Alert.AlertType.INFORMATION);
+            a.setContentText("You didn't entered your city, please entered.");
+            a.show();
+        }
+        else if (date == null)
+        {
+            Alert a = new Alert(Alert.AlertType.INFORMATION);
+            a.setContentText("You didn't entered your birth date, please entered.");
+            a.show();
+        }
+        else
+        {
+            User newUser = new User(_userName,_password,_firstName,_lastName,_userCity,date.toString());
+            controller.insertUser(newUser);
+            if (searchUserData(_userName) != null)
+            {
+                Alert a = new Alert(Alert.AlertType.INFORMATION);
+                a.setContentText("The user created successfully.");
+                a.show();
+            }
+            else
+            {
+                Alert a = new Alert(Alert.AlertType.INFORMATION);
+                a.setContentText("Error occurred! Please try again.");
+                a.show();
+            }
+            clearUserData();
+        }
     }
 
     public void invalidUserDataError(String errorMsg){

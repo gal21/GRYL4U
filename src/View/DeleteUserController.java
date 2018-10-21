@@ -12,12 +12,13 @@ public class DeleteUserController extends UserController {
     public void deleteUser() {
         if (searchUserData(userName.getText()) != null)
         {
-            if(controller.deleteUser(userName.getText(),userPassword.getText())){
+            if (controller.deleteUser(userName.getText(),userPassword.getText())){
                 Alert a = new Alert(Alert.AlertType.INFORMATION);
-
                 a.setContentText("The user is deleted.");
                 a.show();
-            }else{
+            }
+            else
+            {
                 Alert a = new Alert(Alert.AlertType.INFORMATION);
                 a.setContentText("The password is wrong! Please try again.");
                 a.show();
