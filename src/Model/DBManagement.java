@@ -12,7 +12,7 @@ public class DBManagement {
 
     public static void createNewDatabase(String fileName) {
         //System.out.println(System.getProperty("user.dir"));
-        String url = "jdbc:sqlite:" + System.getProperty("user.dir") + "\\" +fileName +".db" ;
+        String url = "jdbc:sqlite:" + System.getProperty("user.dir") + "\\" + fileName + ".db";
         try {
             Connection conn = DriverManager.getConnection(url);
             if (conn != null) {
@@ -27,16 +27,17 @@ public class DBManagement {
 
     public static void createNewTable(String tableName) {
         // SQLite connection string
-        String url = "jdbc:sqlite:" + System.getProperty("user.dir") + "\\SSSIT.db";
+        System.out.println(System.getProperty("user.dir"));
+        String url = "jdbc:sqlite:" + System.getProperty("user.dir") + "\\v4uDB.db";
 
         // SQL statement for creating a new table
         String sql = "CREATE TABLE IF NOT EXISTS " + tableName + " (\n"
-                + " user_name varchar(50) PRIMARY KEY,\n"
-                + " password varchar(50),\n"
-                + " first_name varchar(50),\n "
-                + " last_name varchar(50),\n "
-                + " city varchar(50),\n "
-                + " date varchar(50)\n "
+                + " user_name varchar(10) NOT NULL PRIMARY KEY,\n"
+                + " password varchar(10) NOT NULL,\n"
+                + " first_name varchar(10) NOT NULL,\n "
+                + " last_name varchar(10) NOT NULL,\n "
+                + " city varchar(10) NOT NULL,\n "
+                + " date varchar(15) NOT NULL\n "
                 + ");";
         try {
             Connection conn = DriverManager.getConnection(url);
@@ -51,7 +52,7 @@ public class DBManagement {
     private Connection connect() {
         // SQLite connection string
         //System.out.println(System.getProperty("user.dir"));
-        String url = "jdbc:sqlite:" + System.getProperty("user.dir") + "\\SSSIT.db";
+        String url = "jdbc:sqlite:" + System.getProperty("user.dir") + "\\v4uDB.db";
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(url);
@@ -93,7 +94,7 @@ public class DBManagement {
         }
     }
 
-    public void update(String user_name, String field, String newData) {
+    public boolean update(String user_name, String field, String newData) {
         String sql = "UPDATE Users SET " + field + " = ? WHERE user_name = ? ";
 
         try (Connection conn = this.connect();
@@ -104,38 +105,12 @@ public class DBManagement {
             pstmt.setString(1, newData);
             // update
             pstmt.executeUpdate();
+            return true;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            return false;
         }
     }
-
-    public void find_specific_record(String userName) {
-        String sql = "SELECT user_name, password, first_name, last_name, city,date "
-                + "FROM Users WHERE user_name = ?";
-
-        try (Connection conn = this.connect();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-            // set the value
-            pstmt.setString(1, userName);
-            //
-            ResultSet rs = pstmt.executeQuery();
-
-            // loop through the result set
-            while (rs.next()) {
-                System.out.println(rs.getString("user_name") + "\t" +
-                        rs.getString("password") + "\t" +
-                        rs.getString("first_name") + "\t" +
-                        rs.getString("last_name") + "\t" +
-                        rs.getString("city") + "\t" +
-                        rs.getString("date")
-                );
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
 
     public User find_User_Exists(String userName) {
         String sql = "SELECT user_name, password, first_name, last_name, city,date "
@@ -176,12 +151,12 @@ public class DBManagement {
      */
 
     public static void main(String[] args) {
-        createNewDatabase("newDB");
+        //createNewDatabase("newDB");
         //createNewTable("Try2");
         //createNewTable("Flight");
         //DBManagement app = new DBManagement();
         //app.selectAll();
-        DBManagement app = new DBManagement();
+        //DBManagement app = new DBManagement();
         //insert three new rows
         //app.insert("moshiko", "bgu7u","mor", "dani","tel-aviv","01/01/2004");
         //app.insert("galLah", "bgu4u","gal", "lahiani","beer-sheva");
