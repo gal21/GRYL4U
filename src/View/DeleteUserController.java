@@ -32,4 +32,10 @@ public class DeleteUserController extends UserController {
         }
         return;
     }
+
+    // clear all fields from user data, to start new search
+    public void clearUserData() {
+        userName.clear();
+        userPassword.clear();
+    }
 }

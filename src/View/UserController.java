@@ -21,6 +21,7 @@ public class UserController {
     public void setController(Controller _controller){
         controller = _controller;
     }
+
     public void show(){
         currentUser = searchUserData(userName.getText());
         userName.setDisable(true);

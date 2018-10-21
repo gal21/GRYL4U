@@ -16,7 +16,7 @@ public class Main extends Application {
         View view = new View();
         Controller controller = new Controller(model,view) ;
         view.setController(controller);
-        Parent root = FXMLLoader.load(getClass().getResource("MainView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/MainView.fxml"));
         primaryStage.setTitle("Welcome To Vacation4U!");
         primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.show();
