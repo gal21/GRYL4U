@@ -11,7 +11,8 @@ import java.sql.Statement;
 public class DBManagement {
 
     public static void createNewDatabase(String fileName) {
-        String url = "jdbc:sqlite:C:\\sqlite" + fileName;
+        //System.out.println(System.getProperty("user.dir"));
+        String url = "jdbc:sqlite:" + System.getProperty("user.dir") + "\\" +fileName +".db" ;
         try {
             Connection conn = DriverManager.getConnection(url);
             if (conn != null) {
@@ -26,10 +27,10 @@ public class DBManagement {
 
     public static void createNewTable(String tableName) {
         // SQLite connection string
-        String url = "jdbc:sqlite:C:\\Users\\Lior\\Desktop\\current semester\\Information resources management\\Exercises\\ex1\\Vacation4U\\SSSIT.db";
+        String url = "jdbc:sqlite:" + System.getProperty("user.dir") + "\\SSSIT.db";
 
         // SQL statement for creating a new table
-        String sql = "CREATE TABLE IF NOT EXISTS "+ tableName +" (\n"
+        String sql = "CREATE TABLE IF NOT EXISTS " + tableName + " (\n"
                 + " user_name varchar(50) PRIMARY KEY,\n"
                 + " password varchar(50),\n"
                 + " first_name varchar(50),\n "
@@ -49,7 +50,8 @@ public class DBManagement {
 
     private Connection connect() {
         // SQLite connection string
-        String url = "jdbc:sqlite:C:\\Users\\Lior\\Desktop\\current semester\\Information resources management\\Exercises\\ex1\\Vacation4U\\SSSIT.db";
+        //System.out.println(System.getProperty("user.dir"));
+        String url = "jdbc:sqlite:" + System.getProperty("user.dir") + "\\SSSIT.db";
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(url);
@@ -174,8 +176,8 @@ public class DBManagement {
      */
 
     public static void main(String[] args) {
-        //createNewDatabase("SSSIT.db");
-        createNewTable("Try2");
+        createNewDatabase("newDB");
+        //createNewTable("Try2");
         //createNewTable("Flight");
         //DBManagement app = new DBManagement();
         //app.selectAll();
