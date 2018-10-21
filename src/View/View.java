@@ -1,7 +1,6 @@
 package View;
 
 import Controller.Controller;
-import Model.User;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -30,7 +29,7 @@ public class View {
         stage.setTitle("Create New User");
         try
         {
-            Parent root = FXMLLoader.load(getClass().getResource("CreateUser.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/CreateUser.fxml"));
             Scene scene = new Scene(root, 700, 600);
             stage.setScene(scene);
             stage.initModality(Modality.APPLICATION_MODAL);
@@ -49,7 +48,7 @@ public class View {
         stage.setTitle("Read User");
         try
         {
-            Parent root = FXMLLoader.load(getClass().getResource("ReadUser.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/ReadUser.fxml"));
             Scene scene = new Scene(root, 700, 600);
             stage.setScene(scene);
             stage.initModality(Modality.APPLICATION_MODAL);
@@ -68,7 +67,7 @@ public class View {
         stage.setTitle("Update User");
         try
         {
-            Parent root = FXMLLoader.load(getClass().getResource("UpdateUser.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/UpdateUser.fxml"));
             Scene scene = new Scene(root, 600, 700);
             stage.setScene(scene);
             stage.initModality(Modality.APPLICATION_MODAL);
@@ -87,7 +86,7 @@ public class View {
         stage.setTitle("Delete User");
         try
         {
-            Parent root = FXMLLoader.load(getClass().getResource("DeleteUser.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/DeleteUser.fxml"));
             Scene scene = new Scene(root, 600, 600);
             stage.setScene(scene);
             stage.initModality(Modality.APPLICATION_MODAL);
