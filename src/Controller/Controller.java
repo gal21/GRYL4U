@@ -13,9 +13,9 @@ public class Controller {
         view = _view;
     }
 
-    public void updateUser(User updatedUser) {
+    public boolean updateUser(User updatedUser) {
         //System.out.println("Update Success");
-        model.updateUser(updatedUser);
+        return model.updateUser(updatedUser);
     }
 
     public User searchUserData(String userName) {

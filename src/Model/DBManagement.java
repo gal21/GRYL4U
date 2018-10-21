@@ -12,7 +12,7 @@ public class DBManagement {
 
     public static void createNewDatabase(String fileName) {
         //System.out.println(System.getProperty("user.dir"));
-        String url = "jdbc:sqlite:" + System.getProperty("user.dir") + "\\" +fileName +".db" ;
+        String url = "jdbc:sqlite:" + System.getProperty("user.dir") + "\\" + fileName + ".db";
         try {
             Connection conn = DriverManager.getConnection(url);
             if (conn != null) {
@@ -94,7 +94,7 @@ public class DBManagement {
         }
     }
 
-    public void update(String user_name, String field, String newData) {
+    public boolean update(String user_name, String field, String newData) {
         String sql = "UPDATE Users SET " + field + " = ? WHERE user_name = ? ";
 
         try (Connection conn = this.connect();
@@ -105,8 +105,10 @@ public class DBManagement {
             pstmt.setString(1, newData);
             // update
             pstmt.executeUpdate();
+            return true;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            return false;
         }
     }
 

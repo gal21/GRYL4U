@@ -8,7 +8,7 @@ public class Model {
         dbManagement = new DBManagement();
     }
 
-    public void createNewTable(String tableName){
+    public void createNewTable(String tableName) {
         dbManagement.createNewTable(tableName);
     }
 
@@ -17,12 +17,21 @@ public class Model {
                 newUser.getLast_name(), newUser.getCity(), newUser.getDate());
     }
 
-    public void updateUser(User updatedUser) {
-        dbManagement.update(updatedUser.getUser_name(), "password", updatedUser.getPassword());
-        dbManagement.update(updatedUser.getUser_name(), "first_name", updatedUser.getFirst_name());
-        dbManagement.update(updatedUser.getUser_name(), "last_name", updatedUser.getLast_name());
-        dbManagement.update(updatedUser.getUser_name(), "city", updatedUser.getCity());
-        dbManagement.update(updatedUser.getUser_name(), "date", updatedUser.getDate());
+    public boolean updateUser(User updatedUser) {
+        int count = 0;
+        if (dbManagement.update(updatedUser.getUser_name(), "password", updatedUser.getPassword()))
+            count++;
+        if (dbManagement.update(updatedUser.getUser_name(), "first_name", updatedUser.getFirst_name()))
+            count++;
+        if (dbManagement.update(updatedUser.getUser_name(), "last_name", updatedUser.getLast_name()))
+            count++;
+        if (dbManagement.update(updatedUser.getUser_name(), "city", updatedUser.getCity()))
+            count++;
+        if (dbManagement.update(updatedUser.getUser_name(), "date", updatedUser.getDate()))
+            count++;
+        if (count > 0)
+            return true;
+        return false;
     }
 
     public User searchUserData(String userName) {
@@ -30,11 +39,10 @@ public class Model {
     }
 
     public boolean deleteUser(String userToDelete, String password) {
-        if(dbManagement.confirmPassword(userToDelete,password)){
+        if (dbManagement.confirmPassword(userToDelete, password)) {
             dbManagement.delete(userToDelete);
             return true;
-        }
-        else{
+        } else {
             return false;
         }
 
