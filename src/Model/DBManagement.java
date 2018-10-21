@@ -26,7 +26,7 @@ public class DBManagement {
 
     public static void createNewTable(String tableName) {
         // SQLite connection string
-        String url = "jdbc:sqlite:C:\\Users\\Lior\\Desktop\\current semester\\Information resources management\\Exercises\\ex1\\Vacation4U\\SSSIT.db";
+        String url = "jdbc:sqlite:D:\\Studies\\BGU\\YearC\\semesterA\\NITUZ\\M1\\CRUD GUI\\SSSIT.db";
 
         // SQL statement for creating a new table
         String sql = "CREATE TABLE IF NOT EXISTS "+ tableName +" (\n"
@@ -49,7 +49,7 @@ public class DBManagement {
 
     private Connection connect() {
         // SQLite connection string
-        String url = "jdbc:sqlite:C:\\Users\\Lior\\Desktop\\current semester\\Information resources management\\Exercises\\ex1\\Vacation4U\\SSSIT.db";
+        String url = "jdbc:sqlite:D:\\Studies\\BGU\\YearC\\semesterA\\NITUZ\\M1\\CRUD GUI\\SSSIT.db";
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(url);
