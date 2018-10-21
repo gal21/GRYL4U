@@ -8,6 +8,10 @@ public class Model {
         dbManagement = new DBManagement();
     }
 
+    public void createNewTable(String tableName){
+        dbManagement.createNewTable(tableName);
+    }
+
     public void insertUser(User newUser) {
         dbManagement.insert(newUser.getUser_name(), newUser.getPassword(), newUser.getFirst_name(),
                 newUser.getLast_name(), newUser.getCity(), newUser.getDate());
